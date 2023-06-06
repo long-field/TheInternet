@@ -7,6 +7,7 @@ import brokenimagePage from "../pageobjects/brokenimage.page.js";
 import domPage from "../pageobjects/dom.page.js";
 import checkboxPage from "../pageobjects/checkbox.page.js";
 import contexmenuPage from "../pageobjects/contexmenu.page.js";
+import loginPage from "../pageobjects/login.page.js";
 
 
 class InternetSuite extends TestSuite{
@@ -108,6 +109,22 @@ class InternetSuite extends TestSuite{
         });
         return this;
     }
+
+
+    Login() {
+        this.addTest(() => {
+            it('LOGIN', async () => {
+                await browser.url("https://the-internet.herokuapp.com/login");
+               await loginPage.getUsername().setValue("tomsmith");await loginPage.getPassword().setValue("SuperSecretPassword!");
+             await loginPage.getBtn().click();
+                await expect(browser).toHaveUrlContaining("secure");
+
+
+            });
+        });
+        return this;
+    }
+
 
 
 

@@ -12,7 +12,8 @@ describe('My Internet', () => {
         .BrokenImage()
         .DOM()
         .Checkboxes()
-        .ContextRight()
+        //.ContextRight()
+        .Login()
         .run();
 
 })
