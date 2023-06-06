@@ -8,6 +8,9 @@ import domPage from "../pageobjects/dom.page.js";
 import checkboxPage from "../pageobjects/checkbox.page.js";
 import contexmenuPage from "../pageobjects/contexmenu.page.js";
 import loginPage from "../pageobjects/login.page.js";
+import dropdownPage from "../pageobjects/dropdown.page.js";
+import KeysPage from "../pageobjects/keys.page.js";
+import modalPage from "../pageobjects/modal.page.js";
 
 
 class InternetSuite extends TestSuite{
@@ -124,6 +127,44 @@ class InternetSuite extends TestSuite{
         });
         return this;
     }
+    Dropdown() {
+        this.addTest(() => {
+            it('DropDown', async () => {
+                await browser.url("https://the-internet.herokuapp.com/dropdown");
+                await dropdownPage.getdropdown().selectByAttribute('value', '1');
+                await dropdownPage.getdropdown().selectByAttribute('selected','selected');
+            });
+        });
+        return this;
+    }
+    Keys() {
+        this.addTest(() => {
+            it('Keys', async () => {
+                await browser.url("https://the-internet.herokuapp.com/key_presses");
+                await KeysPage.gettarget().click()
+                await browser.keys("\uE00D");
+                await expect(KeysPage.getresult()).toHaveText("You entered: SPACE")
+            });
+        });
+        return this;
+    }
+    Modal() {
+        this.addTest(() => {
+            it('Modal', async () => {
+                await browser.url("https://the-internet.herokuapp.com/entry_ad");
+                await browser.execute(() => {
+                    const modal = document.getElementById('modal');
+                    modal.style.display = 'none';
+                });
+                await browser.refresh()
+                await browser.pause(6000)
+            });
+
+
+        });
+        return this;
+    }
+
 
 
 

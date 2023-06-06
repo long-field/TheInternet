@@ -14,6 +14,9 @@ describe('My Internet', () => {
         .Checkboxes()
         //.ContextRight()
         .Login()
+        .Dropdown()
+        .Keys()
+        .Modal()
         .run();
 
 })
